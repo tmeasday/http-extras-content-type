@@ -18,6 +18,16 @@ if (Meteor.isClient) {
 
 if (Meteor.isServer) {
   Meteor.startup(function () {
-    console.log(HTTP.get('https://2Fverso-uploads-staging.s3-us-west-1.amazonaws.com/asdf'));
+    var url = 'https://verso-uploads-staging.s3-us-west-1.amazonaws.com/asdf';
+    try {
+      HTTP.get(url);
+    } catch (e) {
+      console.log(e)
+    }
+    try {
+      HTTP.get(url, {responseType: 'buffer'});
+    } catch (e) {
+      console.log(e)
+    }
   });
 }
